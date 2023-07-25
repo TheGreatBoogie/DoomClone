@@ -1197,6 +1197,7 @@ GameObject:
   - component: {fileID: 1392275028}
   - component: {fileID: 1392275030}
   - component: {fileID: 1392275031}
+  - component: {fileID: 1392275032}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1278,6 +1279,20 @@ MonoBehaviour:
   _horizontalCamera: 0
   sensitivity: 1.5
   smoothing: 10
+--- !u!114 &1392275032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392275027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af904daeef2134cf9a30d0535bf07411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  maxArmor: 40
 --- !u!1 &1482830230
 GameObject:
   m_ObjectHideFlags: 0
@@ -2156,7 +2171,7 @@ NavMeshAgent:
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 200
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
