@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -20,6 +21,9 @@ public class Gun : MonoBehaviour
     public float bigDamage = 2f;
     public float smallDamage = 1f;
     public float gunShotRadius = 35f;
+
+    public int maxAmmo = 100;
+    private int _ammo = 10;
 
     private void Awake()
     {
@@ -59,15 +63,31 @@ public class Gun : MonoBehaviour
     
     private void Fire(InputAction.CallbackContext context)
     {
-        // Simulate gunshot radius
-        enemyColliders = Physics.OverlapSphere(transform.position, gunShotRadius, enemyLayerMask);
-        // Alert enemy
-        foreach (var enemyColider in enemyColliders)
+        if (_ammo >= 0)
         {
-            enemyColider.GetComponent<EnemyAwarness>().AggroSound();
+            _ammo--;
+            // Simulate gunshot radius
+            enemyColliders = Physics.OverlapSphere(transform.position, gunShotRadius, enemyLayerMask);
+            // Alert enemy
+            foreach (var enemyColider in enemyColliders)
+            {
+                enemyColider.GetComponent<EnemyAwarness>().AggroSound();
+            }
+
+            DamageEnemies();
+            PlayAudio();
         }
-        DamageEnemies();
-        PlayAudio();
+
+
+    }
+
+    public void GiveAmmo(int amount, GameObject pickup)
+    {
+        _ammo += amount;
+        Destroy(pickup);
+
+        if (_ammo > maxAmmo) _ammo = maxAmmo;
+        Debug.Log("Ammo given");
 
     }
 

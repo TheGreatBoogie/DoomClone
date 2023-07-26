@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 70600599298931479}
   - component: {fileID: 9133843332469699027}
   m_Layer: 0
-  m_Name: GunHit
+  m_Name: GunHitParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -17,8 +17,7 @@ public class Enemy : MonoBehaviour
         Instantiate(GunHitEffect, transform.position, Camera.main.transform.rotation);
         if (enemyHealth <= 0)
         {
-            enemyManager.RemoveEnemy(this);
-            Destroy(gameObject);
+            enemyManager.RemoveEnemy(this); Destroy(gameObject);
 
         }
     }
