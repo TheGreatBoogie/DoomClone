@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: DoorItem-Yellow
   m_EditorClassIdentifier: 
   myString: Yellow
+  remainingUse: 1

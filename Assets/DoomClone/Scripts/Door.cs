@@ -6,6 +6,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private Animator _doorAnim;
+    private bool _isOpened = false;
 
     public DoorItemSO doorItem;
 
@@ -21,18 +22,25 @@ public class Door : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetComponent<PlayerInventory>().myDoorItems.Contains(doorItem))
+        var playerInventory = other.GetComponent<PlayerInventory>();
+        if (other.CompareTag("Player") && playerInventory.myDoorItems.Contains(doorItem))
         {
             _doorAnim.SetTrigger("OpenDoor");
-            Debug.Log("Opening Door");
+            _isOpened = true;
+            doorItem.remainingUse--;
+            Debug.Log("Remaining use: " + doorItem.remainingUse);
+            playerInventory.CheckRemainingUse(doorItem);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && other.GetComponent<PlayerInventory>().myDoorItems.Contains(doorItem))
+        var playerInventory = other.GetComponent<PlayerInventory>();
+
+        if (other.CompareTag("Player") && _isOpened)
         {
             _doorAnim.SetTrigger("OpenDoor");
+            _isOpened = false;
             Debug.Log("Closing door");
         }
     }

@@ -6,5 +6,7 @@ using UnityEngine;
 public class DoorItemSO : ScriptableObject
 {
    public string myString;
-   
+   public int remainingUse;
+
+
 }
